@@ -1,0 +1,43 @@
+---
+title: 'HW1: Exploring Penguins'
+author: "Neslihan Caliskan"
+date: "1/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+
+
+```{r Penguins}
+
+library("palmerpenguins")
+
+palmerpenguins::penguins
+
+##Get a descriptive summary of the penguins dataset
+summary(penguins)
+
+##Check how many columns does penguins dataset has?
+head(penguins)
+
+##Check how many rows does the penguins dataset has?
+nrow(penguins)
+
+Mean_Penguins <- mean(penguins, body_mass_g, na.rm = TRUE)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r penguins, echo=FALSE}
+library("palmerpenguins")
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
