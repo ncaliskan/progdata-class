@@ -1,7 +1,13 @@
 # Homework Template
 
-This is template repository for hosting and posting your homework assignments for Programming with Data.
+***Hello everyone!!***
+This is Neslihan Caliskan, welcome to my **class repository**! A repository is a online place where we all can keep the files and codes we worked on in a single space and easily make edits on them. 
 
-Hello world!!!! Homework template for hw1
+## My Repository
+***My repository is basically consisting of a few files for now***
+*gitignore file should basically  be ignored :P
+*The hw-ncaliskan project document is where I will add my code once I complete my homework 1.
+*The navigating github files was for me trying to get familiar with github and R. 
 
-Hello world again! :)
+## Who am I?
+This is **Neslihan Caliskan**, I am a senior studying Psychology and Linguistics and trying to get familiar with R so that I could work on analyzing data for my honors thesis projects easily. 
