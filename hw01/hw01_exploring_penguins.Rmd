@@ -38,8 +38,7 @@ Plotting Bill Length and Bill Depth
 ```{r penguins, echo=FALSE}
 library("palmerpenguins")
 
-plot(penguins$bill_length_mm,penguins$bill_depth_mm, xlab = "Bill Length", ylab= "Bill Depth")
-
+plot(penguins$bill_length_mm,penguins$bill_depth_mm, main = "Bill Length and Bill Depth", xlab = "Bill Length", ylab= "Bill Depth")
 
 
 ```
