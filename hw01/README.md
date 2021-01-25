@@ -3,7 +3,7 @@
 ***Hello everyone!!*** :hear_no_evil:
 This is Neslihan Caliskan, welcome to my **class repository**! A repository is a online place where we all can keep the files and codes we worked on in a single space and easily make edits on them. 
 
-![](https://media.giphy.com/media/3Nx2u302uH2V7ah2nv/giphy.gif) width="40" height="40"
+![](https://media.giphy.com/media/3Nx2u302uH2V7ah2nv.gif) 
 
 ## My Repository
 **My repository is basically consisting of a few files for now**
