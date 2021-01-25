@@ -4,4 +4,4 @@ This is template repository for hosting and posting your homework assignments fo
 
 Hello world!!!! Homework template for hw1
 
-Hello world again!!
+Hello world again! :)
