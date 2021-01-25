@@ -13,7 +13,7 @@ This is Neslihan Caliskan, welcome to my **class repository**! A repository is a
 This is **Neslihan Caliskan**, I am a senior studying Psychology and Linguistics and trying to get familiar with R so that I could work on analyzing data for my honors thesis projects easily. 
 
 ## To-do List
-[x] Insert a header
-[x] Explain what a repository is
-[x] Help visitors navigate your repository
-[x] Introduce yourself
+- [x] Insert a header
+- [x] Explain what a repository is
+- [x] Help visitors navigate your repository
+- [x] Introduce yourself
