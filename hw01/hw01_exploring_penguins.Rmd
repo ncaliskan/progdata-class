@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-
+## Descriptive Summary of the Dataset
 
 ```{r Penguins}
 
@@ -31,9 +31,9 @@ nrow(penguins)
 Mean_Penguins <- mean(penguins, body_mass_g, na.rm = TRUE)
 ```
 
-## Including Plots
+## Plots
 
-You can also embed plots, for example:
+Plotting Bill Length and Bill Depth 
 
 ```{r penguins, echo=FALSE}
 library("palmerpenguins")
