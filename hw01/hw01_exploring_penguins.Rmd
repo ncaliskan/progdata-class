@@ -31,7 +31,10 @@ head(penguins)
 ##Check how many rows does the penguins dataset has?
 nrow(penguins)
 
-Mean_Penguins <- mean(penguins, body_mass_g, na.rm = TRUE)
+
+
+  
+
 ```
 
 ## Plots
