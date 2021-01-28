@@ -71,13 +71,6 @@ nrow(penguins)
 
     ## [1] 344
 
-``` r
-Mean_Penguins <- mean(penguins, body_mass_g, na.rm = TRUE)
-```
-
-    ## Warning in mean.default(penguins, body_mass_g, na.rm = TRUE): argument is not
-    ## numeric or logical: returning NA
-
 ## Plots
 
 Plotting Bill Length and Bill Depth
