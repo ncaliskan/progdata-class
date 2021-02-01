@@ -133,7 +133,9 @@ caribou_path <-
 
 ggplot(caribou_path) +
   aes(x, y) + 
-  geom_line()
+  geom_line(aes())+
+  arrow = arrow()+
+  geom_text()
 ```
 
 ## Exercise 5: Life expectancies in Africa
@@ -153,7 +155,7 @@ ggplot(americas) +
   aes(country, lifeExp) +
   geom_point() +
   geom_boxplot() +
-  scale_x_discrete()
+  scale_x_discrete(guide = guide_axis(n.dodge=3))
 ```
 
 ### 5(b) Ridgeplots
