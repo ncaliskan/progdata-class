@@ -1,0 +1,52 @@
+---
+title: 'HW1: Exploring Penguins'
+author: "Neslihan Caliskan"
+date: "1/25/2021"
+output: 
+  
+  html_document: default
+  github_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+## Descriptive Summary of the Dataset
+
+```{r Penguins}
+
+library("palmerpenguins")
+
+palmerpenguins::penguins
+
+##Get a descriptive summary of the penguins dataset
+summary(penguins)
+
+##Check how many columns does penguins dataset has?
+head(penguins)
+
+##Check how many rows does the penguins dataset has?
+nrow(penguins)
+
+
+
+  
+
+```
+
+## Plots
+
+Plotting Bill Length and Bill Depth 
+
+```{r penguins, echo=FALSE}
+library("palmerpenguins")
+
+plot(penguins$bill_length_mm,penguins$bill_depth_mm, main = "Bill Length and Bill Depth", xlab = "Bill Length", ylab= "Bill Depth")
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
