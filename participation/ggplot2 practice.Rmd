@@ -47,7 +47,10 @@ Fix the overlapping data points problem in the following plot using each of thes
 ```{r, fig.width = 5, fig.height = 2}
 ggplot(mpg) +
   aes(cty, hwy) +
-  geom_point()
+  geom_point(alpha = .5,
+             size = .5) +
+  geom_jitter(height = 5,
+              width = 5)
 ```
 
 
@@ -58,8 +61,9 @@ _for each country_.
 ggplot(gapminder) +
 
 ```{r, fig.width = 5, fig.height = 2}
-  aes(year, lifeExp) +
-  geom_line()
+ ggplot(gapminder) +
+ aes(year, lifeExp) +
+  geom_line(aes(group=country), alpha =.5)
 ```
 
 
@@ -74,7 +78,7 @@ ggplot(gapminder) +
 ggplot(gapminder) +
   aes(gdpPercap, lifeExp) +
   geom_point(alpha = 0.2) +
-  scale_x_log10()
+  scale_x_log10(label = comma)
 ```
 
 ### 3(b) Bubble Plot
@@ -91,7 +95,8 @@ ggplot(gapminder_noOceania) +
   aes(gdpPercap, lifeExp) +
   facet_wrap(~ continent) +
   geom_point(alpha = 0.2) +
-  scale_x_log10(labels = scales::comma_format())
+  scale_x_log10(labels = scales::comma_format()) +
+  scale_size_area(max_size = 6)
 ```
 
 A list of shapes can be found [at the bottom of the `scale_shape` documentation](https://ggplot2.tidyverse.org/reference/scale_shape.html).
@@ -103,7 +108,7 @@ Instead of alpha transparency, suppose you're wanting to fix the overplotting is
 ```{r, fig.width = 5, fig.height = 2}
 ggplot(gapminder) +
   aes(gdpPercap, lifeExp, size = 0.1) +
-  geom_point() +
+  geom_point(size = 0.5) +
   scale_x_log10(labels = scales::dollar_format())
 ```
 
