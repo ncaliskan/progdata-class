@@ -162,11 +162,14 @@ ggplot(americas) +
 
 We're starting with the same plot as above, but instead of the points + boxplot, try a ridge plot instead using `ggridges::geom_density_ridges()`, and adjust the `bandwidth`.
 
+ASK PROFESSOR WIERNIK
+
 ```{r, fig.width = 5, fig.height = 2}
 ggplot(americas) +
   aes(country, lifeExp) +
   geom_point() +
-  geom_boxplot()
+  geom_boxplot() +
+  ggridges::geom_density_ridges()
 ```
 
 ## Exercise 6: Bar plot madness
@@ -184,7 +187,8 @@ ggplot(americas) +
 mtcars2 <- mutate(mtcars, transmission = if_else(am == 0, "automatic", "manual"))
 ggplot(mtcars2) +
   aes(cyl) +
-  geom_bar(aes(color = transmission))
+  geom_bar(aes(color = transmission,
+               y = ..prop..))
 ```
 
 ### 6(b) Bar heights already calculated
