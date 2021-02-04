@@ -146,8 +146,10 @@ Let's get:
 - `gdpBill`: GDP in billions, rounded to two decimals.
 
 ```{r}
+options(scipen = 999)
 gapminder %>%
-  mutate(FILL_THIS_IN)
+  mutate(grossGDP = gdpPercap*pop) %>% 
+  mutate(gdpBill = round(gdpPercap, digits = 2))
 ```
 
 Notice the backwards compatibility! No need for loops!
