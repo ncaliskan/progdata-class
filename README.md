@@ -9,7 +9,7 @@ This is Neslihan Caliskan, welcome to my **class repository**! A repository is a
 <!-- Part of the assignment was to try out different Markdown features, like adding images, headings, bold, italic, bullets, numbered lists, links, etc. Please update to try out a few more features. :-) -->
 
 This is template repository for hosting and posting your homework assignments for Programming with Data.
->>>>>>> b337e1ec13adfb99237c5bf330c13dba06c28b54
+
 
 ## My Repository :information_desk_person:
 **My repository is basically consisting of a few files for now**
@@ -17,7 +17,7 @@ This is template repository for hosting and posting your homework assignments fo
 2. The hw-ncaliskan project document is where I will add my code once I complete my homework 1.
 3. The navigating github files was for me trying to get familiar with github and R. 
 
-<<<<<<< HEAD
+
 ## Who am I? :bowtie:
 This is **Neslihan Caliskan**, I am a senior studying Psychology and Linguistics and trying to get familiar with R so that I could work on analyzing data for my honors thesis projects easily. 
 
@@ -29,5 +29,4 @@ This is **Neslihan Caliskan**, I am a senior studying Psychology and Linguistics
 =======
 Hello world again! :)
 
-<!-- For best practices, always end your file with a blank line. -->
->>>>>>> b337e1ec13adfb99237c5bf330c13dba06c28b54
+
