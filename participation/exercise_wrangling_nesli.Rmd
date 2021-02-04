@@ -126,7 +126,7 @@ gapminder %>%
 
 ```{r}
 gapminder %>%
-  filter(FILL_THIS_IN)
+  filter(country %in% c("Brazil", "China") & pop > 100000000)
 ```
 
 ## `mutate()`
