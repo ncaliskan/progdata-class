@@ -99,6 +99,8 @@ Select `year`, `lifeExp`, `country` from the `gapminder`, then arrange in order 
 gapminder %>% 
   select( c(year, lifeExp,country)) %>% 
   arrange (year, lifeExp)
+
+#you don't need to use "c" concatenate function in select & arrange and I belive in all of the tidyverse functions.
 ```
 
 
@@ -110,14 +112,14 @@ gapminder %>%
 
 ```{r}
 gapminder %>%
-  filter(FILL_THIS_IN)
+  filter(pop>100000000)
 ```
 
 2. Only keep data _from Asia_ with population greater than 100 million.
 
 ```{r}
 gapminder %>%
-  filter(FILL_THIS_IN)
+  filter(continent =="Asia" & pop>100000000)
 ```
 
 3. Only keep data _from the countries Brazil and China_ with population greater than 100 million.
