@@ -59,9 +59,10 @@ select(gapminder, continent, everything())
 
 ```{r}
 # compare
-select(gapminder, FILL_THIS_IN)
+select(gapminder, continent)
 
-rename(gapminder, FILL_THIS_IN)
+rename(gapminder, cont = continent)
+
 ```
 
 
@@ -70,13 +71,13 @@ rename(gapminder, FILL_THIS_IN)
 1. Order by year.
 
 ```{r}
-arrange(gapminder, FILL_THIS_IN)
+arrange(gapminder, year)
 ```
 
 2. Order by year, in descending order.
 
 ```{r}
-arrange(gapminder, FILL_THIS_IN)
+arrange(gapminder, desc(year))
 ```
 
 3. Order by year, then by life expectancy.
