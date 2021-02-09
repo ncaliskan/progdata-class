@@ -1,0 +1,28 @@
+---
+title: "Hw2"
+author: "Neslihan Caliskan"
+date: "2/8/2021"
+output: 
+  html_document: default
+  github_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+Load in your packages
+```{r Packages}
+library(gapminder)
+library(tidyverse)
+
+```
+
+Exercise 1
+```{r Exercise 1}
+gapminder::gapminder
+
+```
+
