@@ -63,5 +63,33 @@ gapminder %>%
   
 ```
 
+Exercise 2 
+```{r Packages}
+library(tidyverse)
+library(dplyr)
+library(palmerpenguins)
+```
+
+Pick two quantitative variables to explore
+```{r}
+#I couldn't get the first half of this chunk work can you help me with it?
+palmerpenguins::penguins %>% 
+  select(flipper_length_mm, body_mass_g) %>% 
+  summarise(
+    Mean_Length = round(flipper_length_mm, na.rm = TRUE),
+    Mean_BodyMass = round(body_mass_g, na.rm = TRUE),
+    SD_FLength = sd(flipper_length_mm, na.rm = TRUE),
+    SD_BodyMass = sd(body_mass_g, na.rm = TRUE),
+    )
+
+palmerpenguins::penguins %>% 
+  select(bill_length_mm, bill_depth_mm) %>% 
+  summarise(
+    meanlength = mean(bill_length_mm, na.rm = T),
+    sdlength = sd(bill_length_mm, na.rm = T),
+    meandepth = mean(bill_depth_mm, na.rm = T),
+    sddepth = sd(bill_depth_mm, na.rm = T),
+  )
+```
 
 
