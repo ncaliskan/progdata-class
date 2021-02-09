@@ -47,6 +47,12 @@ gapminder %>%
 gapminder %>% 
   group_by(country) %>% 
   summarize(max(gdpPercap))
+
+#A better way to write to code to make it look neater
+gapminder %>% 
+  select(country, gdpPercap) %>% 
+  group_by(country) %>% 
+  filter(gdpPercap == max(gdpPercap))
 ```
 
 
