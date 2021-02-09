@@ -3,8 +3,8 @@ title: "Hw2"
 author: "Neslihan Caliskan"
 date: "2/8/2021"
 output: 
-  html_document: default
   github_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 Load in your packages
-```{r Packages}
+```{r}
 library(gapminder)
 library(tidyverse)
 library(dplyr)
@@ -73,15 +73,14 @@ library(palmerpenguins)
 Pick two quantitative variables to explore
 ```{r Exercise 2.1}
 #I couldn't get the first half of this chunk work can you help me with it?
-palmerpenguins::penguins %>% 
-  select(flipper_length_mm, body_mass_g) %>% 
-  summarise(
-    Mean_Length = round(flipper_length_mm, na.rm = TRUE),
-    Mean_BodyMass = round(body_mass_g, na.rm = TRUE),
-    SD_FLength = sd(flipper_length_mm, na.rm = TRUE),
-    SD_BodyMass = sd(body_mass_g, na.rm = TRUE),
-    )
-
+# palmerpenguins::penguins %>% 
+#   select(flipper_length_mm, body_mass_g) %>% 
+#   summarise(
+#     Mean_Length = round(flipper_length_mm, na.rm = TRUE),
+#     Mean_BodyMass = round(body_mass_g, na.rm = TRUE),
+#     SD_FLength = sd(flipper_length_mm, na.rm = TRUE),
+#     SD_BodyMass = sd(body_mass_g, na.rm = TRUE),
+#     )
 palmerpenguins::penguins %>% 
   select(bill_length_mm, bill_depth_mm) %>% 
   summarise(
