@@ -22,7 +22,7 @@ library(dplyr)
 ```
 
 Exercise 1
-```{r Exercise 1}
+```{r Exercise 1.1 & 1.2}
 gapminder::gapminder 
 
 #Exercise 1.1 & 1.2
@@ -31,10 +31,25 @@ gapminder::gapminder
 #You can select multiple columns simply by insterting a comma in between them! 
 gapminder %>% 
   filter(country %in% c("Afghanistan","Australia","Austria") & year > 1970 & year < 1980) %>% 
-  select(country, gdpPercap)
+  select(country, gdpPercap) 
+
+```
+
+```{r Exercise 1.3}
+gapminder %>% 
+  mutate(diffLifeExp = lifeExp - lag(lifeExp)) %>% 
+ summarize(diff(diffLifeExp, differences = 1))
+
+```
 
 
-  
+```{r Exercise 1.4}
+gapminder %>% 
+  group_by(country) %>% 
+  summarize(max(gdpPercap))
+```
+
+```{r}
 
 ```
 
