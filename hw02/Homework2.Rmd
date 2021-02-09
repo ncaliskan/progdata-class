@@ -17,12 +17,21 @@ Load in your packages
 ```{r Packages}
 library(gapminder)
 library(tidyverse)
+library(dplyr)
 
 ```
 
 Exercise 1
 ```{r Exercise 1}
-gapminder::gapminder
+gapminder::gapminder 
+
+#Exercise 1.1
+#In order to filter by multiple rows you need to use the "%in%" function!
+#You can add more criteria by inserting "&" in the middle.
+gapminder %>% 
+  filter(country %in% c("Afghanistan","Australia","Austria") & year > 1970 & year < 1980)
+
+  
 
 ```
 
