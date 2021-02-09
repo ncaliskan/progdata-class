@@ -71,7 +71,7 @@ library(palmerpenguins)
 ```
 
 Pick two quantitative variables to explore
-```{r}
+```{r Exercise 2.1}
 #I couldn't get the first half of this chunk work can you help me with it?
 palmerpenguins::penguins %>% 
   select(flipper_length_mm, body_mass_g) %>% 
@@ -90,6 +90,33 @@ palmerpenguins::penguins %>%
     meandepth = mean(bill_depth_mm, na.rm = T),
     sddepth = sd(bill_depth_mm, na.rm = T),
   )
+
+#Scatterplot
+palmerpenguins::penguins %>% 
+  ggplot +
+  aes(x = bill_length_mm, y = bill_depth_mm) +
+  geom_point(alpha = 0.5) +
+  scale_x_log10("Bill Length") +
+  ylab("Bill Depth")
 ```
 
+
+```{r Exercise 2.2}
+#Sample size info
+palmerpenguins::penguins %>% 
+  select(species, body_mass_g) %>% 
+  summarize(rows = n())
+
+#One categorical and one quantitative variable to explore
+palmerpenguins::penguins %>% 
+  select(species, body_mass_g) %>% 
+  group_by(species) %>% 
+  summarise(sdmass = sd(body_mass_g, na.rm = T))
+
+#Visualize the data
+ggplot(palmerpenguins::penguins, aes(species, body_mass_g)) +
+  geom_jitter() 
+
+
+```
 
