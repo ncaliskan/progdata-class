@@ -35,7 +35,7 @@ select(A_tot, C_tot, E_tot, N_tot, O_tot)
 
  Keep just Big Five scores, gender, age, and education.
 ```{r}
-psych::bfi %>%
+bfiscore <- psych::bfi %>%
 rowwise() %>%
 mutate(A_tot = mean(c_across(A1:A5), na.rm = TRUE)) %>% 
 mutate(C_tot = mean(c_across(C1:C5), na.rm = TRUE)) %>% 
@@ -47,12 +47,13 @@ select(A_tot, C_tot, E_tot, N_tot, O_tot, gender, age, education)
 
 Summarize the mean, standard deviation, minimum, and maximum values for the Big Five scores separately by gender groups.
 ```{r}
-psych::bfi %>% 
+bfiscore %>% 
   group_by(gender) %>% 
-  summarize(c(A1:O5),
-            list(mean = ~ mean(.x, na.rm = T),
-                 sd = ~ sd(.x, na.rm = T),
-                 min = ~ min(.x, na.rm = T),
-                 max = ~ man(.x, na.rm = T)))
+  summarize(
+    across(A_tot:O_tot,
+            list(mean = ~ mean(.x, na.rm = TRUE),
+                 sd = ~ sd(.x, na.rm =TRUE),
+                 min = ~ min(.x, na.rm = TRUE),
+                 max = ~ max(.x, na.rm = TRUE))))
 ```
 
