@@ -38,7 +38,7 @@ gapminder %>%
 ```{r Exercise 1.3}
 gapminder %>% 
   mutate(diffLifeExp = lifeExp - lag(lifeExp)) %>% 
- summarize(diff(diffLifeExp, differences = 1))
+  filter(diffLifeExp < lifeExp )
 
 ```
 
