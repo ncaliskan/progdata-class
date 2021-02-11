@@ -1,0 +1,59 @@
+---
+title: "Wrangling with Psych Data"
+author: "Neslihan Caliskan"
+date: "2/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Use the `psych::bfi` dataset.
+2. Compute mean scores for each of the Big Five traits for each person.
+3. Keep just Big Five scores, gender, age, and education.
+4. Summarize the mean, standard deviation, minimum, and maximum values for the Big Five scores separately by gender groups.
+5. Summarize the mean, standard deviation, minimum, and maximum values for the Big Five scores separately by educational level groups.
+
+```{r Load in packages}
+ library(tidyverse)
+ library(dplyr)
+
+```
+
+Compute mean scores for each of the Big Five traits for each person.
+```{r}
+psych::bfi %>%
+rowwise() %>%
+mutate(A_tot = mean(c_across(A1:A5), na.rm = TRUE)) %>% 
+mutate(C_tot = mean(c_across(C1:C5), na.rm = TRUE)) %>% 
+mutate(E_tot = mean(c_across(E1:E5), na.rm = TRUE)) %>% 
+mutate(O_tot = mean(c_across(O1:O5), na.rm = TRUE)) %>% 
+mutate(N_tot = mean(c_across(N1:N5), na.rm = TRUE)) %>% 
+select(A_tot, C_tot, E_tot, N_tot, O_tot)
+```
+
+ Keep just Big Five scores, gender, age, and education.
+```{r}
+bfiscore <- psych::bfi %>%
+rowwise() %>%
+mutate(A_tot = mean(c_across(A1:A5), na.rm = TRUE)) %>% 
+mutate(C_tot = mean(c_across(C1:C5), na.rm = TRUE)) %>% 
+mutate(E_tot = mean(c_across(E1:E5), na.rm = TRUE)) %>% 
+mutate(O_tot = mean(c_across(O1:O5), na.rm = TRUE)) %>% 
+mutate(N_tot = mean(c_across(N1:N5), na.rm = TRUE)) %>% 
+select(A_tot, C_tot, E_tot, N_tot, O_tot, gender, age, education)
+```
+
+Summarize the mean, standard deviation, minimum, and maximum values for the Big Five scores separately by gender groups.
+```{r}
+bfiscore %>% 
+  group_by(gender) %>% 
+  summarize(
+    across(A_tot:O_tot,
+            list(mean = ~ mean(.x, na.rm = TRUE),
+                 sd = ~ sd(.x, na.rm =TRUE),
+                 min = ~ min(.x, na.rm = TRUE),
+                 max = ~ max(.x, na.rm = TRUE))))
+```
+
