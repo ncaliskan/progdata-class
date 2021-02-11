@@ -119,8 +119,12 @@ palmerpenguins::penguins %>%
   summarise(sdmass = sd(body_mass_g, na.rm = T))
 
 #Visualize the data
-ggplot(palmerpenguins::penguins, aes(species, body_mass_g)) +
-  geom_jitter() 
+palmerpenguins::penguins %>% 
+  ggplot() +
+  geom_jitter(aes(x = species, 
+                  y = body_mass_g,
+                  alpha = .5,
+                  colour = species))
 
 
 ```
