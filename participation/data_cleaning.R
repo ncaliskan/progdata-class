@@ -2,6 +2,8 @@ library(dplyr)
 library(tidyr)
 library(tibble)
 
+library(tidyverse)
+
 dat_bfi <- psychTools::bfi
 key_bfi <- psychTools::bfi.keys
 
@@ -129,6 +131,9 @@ dat_bfi %>%
 # Now you try:
 
 ## 1. Use the psychTools::bfi (or psych::bfi) data
+psychTools::bfi %>% 
+rownames_to_column(var = ".id") %>% 
+  as_tibble()
 ## 2. Recode gender to 'man', 'women', '(no response)'
 ## 3. Recode education to "Some HS", "HS", "Some College", "College", "Graduate degree", "(no response)"
 ## 4. Compute a new variable `hs_grad` with levels "no" and "yes"
