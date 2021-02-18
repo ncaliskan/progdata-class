@@ -4,14 +4,26 @@ You will analyze data looking at the relationship between **green reputation** a
 The dataset includes data from **students** and **non-students**.
 
 ```{r}
-dictionary <- readr::read_csv(here::here("hw03", "green_dictionary.csv"))
-green_data <- readr::read_csv(here::here("hw03", "green_data.csv"))
+dictionary <- readr::read_csv(("green_dictionary.csv"))
+green_data <- readr::read_csv(("green_data.csv"))
 ```
 
 For your assignment, do the following.
 
   1. Inspect the item responses (e.g., with graphs or by summarizing distinct values). 
      Is anything unusual?
+
+Get the summaries of each data file     
+```{r}
+dictionary %>% 
+  summarize(dictionary)
+
+green_data %>% 
+  summarize(green_data)
+
+#There are -99 s in the data file that needs to be recoded
+```
+     
   2. Compute total scores for the four scales. 
      Recode variables as needed.
   3. Rescale the variables so that they go from 0-100 instead of the original range.
