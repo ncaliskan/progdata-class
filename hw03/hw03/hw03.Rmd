@@ -22,6 +22,7 @@ green_data %>%
   summarize(green_data)
 
 #There are -99 s in the data file that needs to be recoded
+
 ```
      
   2. Compute total scores for the four scales. 
