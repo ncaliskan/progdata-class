@@ -9,21 +9,19 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
-```
-
-
-Load in your packages
-```{r}
-library(gapminder)
+library(gapminder) # BMW: Put library() calls in the setup chunk.
 library(tidyverse)
-library(dplyr)
-
+library(dplyr) # BMW: library(tidyverse) loads dplyr too, so you don't need it as well
+library(palmerpenguins)
 ```
+
 
 Exercise 1
+
+<!-- BMW: In markdown, you need a blank line between paragphs. A single line break is ignored. -->
+
 ```{r Exercise 1.1 & 1.2}
-gapminder::gapminder 
+gapminder::gapminder  # BMW: Don't print out whole datasets like this
 
 #Exercise 1.1 & 1.2
 #In order to filter by multiple rows you need to use the "%in%" function!
@@ -32,34 +30,29 @@ gapminder::gapminder
 gapminder %>% 
   filter(country %in% c("Afghanistan","Australia","Austria") & year > 1970 & year < 1980) %>% 
   select(country, gdpPercap) 
-
 ```
 
 ```{r Exercise 1.3}
 gapminder %>% 
+  group_by(country) %>% 
   mutate(diffLifeExp = lifeExp - lag(lifeExp)) %>% 
-  filter(diffLifeExp < lifeExp )
-
+  filter(diffLifeExp < lifeExp)
 ```
 
+<!-- BMW: Great job! You need to group by country so that you don't subtract 2007 from one country from 1952 for the next country. -->
 
 ```{r Exercise 1.4}
-gapminder %>% 
-  group_by(country) %>% 
-  summarize(max(gdpPercap))
-
 #A better way to write to code to make it look neater
 gapminder %>% 
-  select(country, gdpPercap) %>% 
   group_by(country) %>% 
-  filter(gdpPercap == max(gdpPercap))
+  filter(gdpPercap == max(gdpPercap)) 
 ```
 
 
 ```{r Exercise 1.5}
 gapminder %>% 
   filter(country == "Canada") %>% 
-  ggplot +
+  ggplot() + 
   aes(x = gdpPercap, y = lifeExp) + 
   geom_point(alpha = 0.5) +
   scale_x_log10("GDP per capita", labels = scales::dollar_format()) +
@@ -70,13 +63,13 @@ gapminder %>%
 ```
 
 Exercise 2 
+
 ```{r Packages}
-library(tidyverse)
-library(dplyr)
-library(palmerpenguins)
+# Put all library() calls at teh top of the script
 ```
 
 Pick two quantitative variables to explore
+
 ```{r Exercise 2.1}
 #I couldn't get the first half of this chunk work can you help me with it?
 # palmerpenguins::penguins %>% 
@@ -87,6 +80,9 @@ Pick two quantitative variables to explore
 #     SD_FLength = sd(flipper_length_mm, na.rm = TRUE),
 #     SD_BodyMass = sd(body_mass_g, na.rm = TRUE),
 #     )
+
+# BMW: round() rounds each number in a vector (each value of flipper_length_mm). Were you trying to round the mean? Then you need, round(mean(flipper_length_mm, na.rm = TRUE))
+
 palmerpenguins::penguins %>% 
   select(bill_length_mm, bill_depth_mm) %>% 
   summarise(
@@ -98,7 +94,7 @@ palmerpenguins::penguins %>%
 
 #Scatterplot
 palmerpenguins::penguins %>% 
-  ggplot +
+  ggplot() + # BMW: Always put the parentheses on function calls in a pipe, even if you leave them empty.
   aes(x = bill_length_mm, y = bill_depth_mm) +
   geom_point(alpha = 0.5) +
   scale_x_log10("Bill Length") +
@@ -107,25 +103,24 @@ palmerpenguins::penguins %>%
 
 
 ```{r Exercise 2.2}
-#Sample size info
-palmerpenguins::penguins %>% 
-  select(species, body_mass_g) %>% 
-  summarize(rows = n())
-
 #One categorical and one quantitative variable to explore
 palmerpenguins::penguins %>% 
   select(species, body_mass_g) %>% 
   group_by(species) %>% 
-  summarise(sdmass = sd(body_mass_g, na.rm = T))
+  summarise(sample_size = n(), # BMW: The question wanted sample size by group too
+            mean_mass = mean(body_mass_g, na.rm = TRUE),
+            sd_mass = sd(body_mass_g, na.rm = TRUE)
+            )
 
 #Visualize the data
 palmerpenguins::penguins %>% 
   ggplot() +
   geom_jitter(aes(x = species, 
                   y = body_mass_g,
-                  alpha = .5,
-                  colour = species))
-
+                  colour = species),
+              alpha = .5, # BMW: parameters that _aren't_ mapped to variables need to be outside aes()
+              height = 0
+              ) # BMW: When you use geom_jitter() with a continuous and categorical variable, you want to set it to not add noise on the axis with the continous variable. Here, do that by adding height = 0
 
 ```
 
