@@ -21,48 +21,72 @@ For your assignment, do the following.
 
 Get the summaries of each data file     
 ```{r}
-dictionary %>% 
-  summarize(dictionary)
+# dictionary %>% 
+#   summarize(dictionary)
+# 
+# green_data %>% 
+# summarize(green_data)
+# fixed_green_data <- green_data %>% 
+#                 na_if("-99")
 
-# data <- green_data %>% 
-#   na_if("-99") %>% 
-#   summarize(data)
 
-green_data %>% 
-summarize(green_data)
-fixed_green_data <- green_data %>% 
-                na_if("-99")
+# data_reversed <- c("green2",
+#                    "comp6",
+#                    "comp7",
+#                    "comp8",
+#                    "comp9",
+#                    "comp10",
+#                    "intel7",
+#                    "intel8",
+#                    "intel9",
+#                    "intel10",
+#                    "open7",
+#                    "open8",
+#                    "open9",
+#                    "open10")
+# 
+# recoded_green_data <- fixed_green_data %>% 
+#   mutate(across(all_of(data_reversed),
+#                 ~ recode(.x, "1"= 5,"2" = 4,"4" = 2,"5"= 1 ),
+#                 .names = "{.col}r") %>% 
+#            select(recoded_green_data))
 
-data_reversed <- c("green2",
-                   "comp6",
-                   "comp7",
-                   "comp8",
-                   "comp9",
-                   "comp10",
-                   "intel7",
-                   "intel8",
-                   "intel9",
-                   "intel10",
-                   "open7",
-                   "open8",
-                   "open9",
-                   "open10")
+
+#Restarting everything because I couldn't figure out what was wrong.
+print(green_data)
+
+reversed <- c("green2", "comp6", "comp7", "comp8", "comp9", "comp10", 
+              "intel7", "intel8", "intel9", "intel10", "open7", "open8", 
+              "open9", "open10")
+
+green_datar <- green_data %>% 
+  mutate(across(all_of(reversed),
+                ~ recode(.x, "1"= 5,"2" = 4,"4" = 2,"5"= 1 ),
+                .names = "{.col}r"))
+
   
 
 
 #There are -99 s in the data file that needs to be recoded
-
 ```
      
   2. Compute total scores for the four scales. 
      Recode variables as needed.
 ```{r}
-data %>% 
-  select(.id, id, green1:student)
+green_datar %>% 
+  rowwise() %>% 
+  mutate(green_tot = sum(c_across(green1:green5), na.rm = TRUE),
+         comp_tot = sum(c_across(comp1:comp10r), na.rm = TRUE),
+         intel_tot = sum(c_across(intel1:intel10r), na.rm = TRUE),
+         open_tot = sum(c_across(open1:open10r), na.rm = TRUE))
 ```
     
   3. Rescale the variables so that they go from 0-100 instead of the original range.
      Name the recaled variables `*_pomp`.
+```{r}
+
+```
+     
   4. Make plots that illustrate the distributions of the 4 POMP-scored variables.
   5. Make scatterplots showing the relationships between **green reputation** and each personality trait.
      Include trend lines for **students** and **non-students**.
