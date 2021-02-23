@@ -24,10 +24,14 @@ Get the summaries of each data file
 dictionary %>% 
   summarize(dictionary)
 
-data <- green_data %>% 
-  rownames_to_column(var = ".id")
+# data <- green_data %>% 
+#   na_if("-99") %>% 
+#   summarize(data)
 
-head(data)
+green_data %>% 
+summarize(green_data)
+fixed_green_data <- green_data %>% 
+                na_if("-99")
 
 data_reversed <- c("green2",
                    "comp6",
@@ -43,8 +47,6 @@ data_reversed <- c("green2",
                    "open8",
                    "open9",
                    "open10")
-
-
   
 
 
