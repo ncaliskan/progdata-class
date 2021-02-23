@@ -84,10 +84,19 @@ green_datar %>%
   3. Rescale the variables so that they go from 0-100 instead of the original range.
      Name the recaled variables `*_pomp`.
 ```{r}
+green_data_pomp <- green_datar %>% 
+  mutate(across(c(green1:open10),
+         ~ recode(.x, "1"= 0,"2" = 25, "3" = 50, "4" = 75,"5"= 100),
+                .names = "{.col}_pomp"))
 
+print(green_data_pomp)
 ```
      
   4. Make plots that illustrate the distributions of the 4 POMP-scored variables.
+```{r}
+
+```
+  
   5. Make scatterplots showing the relationships between **green reputation** and each personality trait.
      Include trend lines for **students** and **non-students**.
      What do these plots show?
