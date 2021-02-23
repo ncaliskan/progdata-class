@@ -3,6 +3,12 @@
 You will analyze data looking at the relationship between **green reputation** and three personality traits--**compassion**, **intellectual curiosity**, and **openness to experiences**.
 The dataset includes data from **students** and **non-students**.
 
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
 ```{r}
 dictionary <- readr::read_csv(("green_dictionary.csv"))
 green_data <- readr::read_csv(("green_data.csv"))
@@ -18,8 +24,29 @@ Get the summaries of each data file
 dictionary %>% 
   summarize(dictionary)
 
-green_data %>% 
-  summarize(green_data)
+data <- green_data %>% 
+  rownames_to_column(var = ".id")
+
+head(data)
+
+data_reversed <- c("green2",
+                   "comp6",
+                   "comp7",
+                   "comp8",
+                   "comp9",
+                   "comp10",
+                   "intel7",
+                   "intel8",
+                   "intel9",
+                   "intel10",
+                   "open7",
+                   "open8",
+                   "open9",
+                   "open10")
+
+
+  
+
 
 #There are -99 s in the data file that needs to be recoded
 
@@ -28,7 +55,8 @@ green_data %>%
   2. Compute total scores for the four scales. 
      Recode variables as needed.
 ```{r}
-
+data %>% 
+  select(.id, id, green1:student)
 ```
     
   3. Rescale the variables so that they go from 0-100 instead of the original range.
