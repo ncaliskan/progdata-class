@@ -68,10 +68,10 @@ print(green_data_pomp)
 
 Av_green_data_pomp <- green_data_pomp %>% 
   rowwise() %>% 
-  mutate(green_mean_pomp = mean(c_across(green1:green5), na.rm = TRUE),
-         comp_mean_pomp = mean(c_across(comp1:comp10r), na.rm = TRUE),
-         intel_mean_pomp = mean(c_across(intel1:intel10r), na.rm = TRUE),
-         open_mean_pomp = mean(c_across(open1:open10r), na.rm = TRUE))
+  mutate(GM_pomp = mean(c_across(green1:green5), na.rm = TRUE),
+         CM_pomp = mean(c_across(comp1:comp10r), na.rm = TRUE),
+         IM_pomp = mean(c_across(intel1:intel10r), na.rm = TRUE),
+         OM_pomp = mean(c_across(open1:open10r), na.rm = TRUE))
 
 ```
      
@@ -79,46 +79,31 @@ Av_green_data_pomp <- green_data_pomp %>%
 ```{r}
 Av_green_data_pomp %>% 
 ggplot() +
-  aes(comp_av_pomp,green_av_pomp) +
+  aes(CM_pomp,GM_pomp) +
   geom_smooth(method = lm) 
 
-Av_green_data_pomp %>% 
-ggplot() +
-  aes(comp_av_pomp,intel_av_pomp) +
-  geom_smooth() 
 
 Av_green_data_pomp %>% 
 ggplot() +
-  aes(comp_av_pomp,open_tav_pomp) +
-  geom_smooth() 
-
-Av_green_data_pomp %>% 
-ggplot() +
-  aes(open_tav_pomp,intel_av_pomp) +
-  geom_smooth() 
-
-
-Av_green_data_pomp %>% 
-ggplot() +
-aes(x = green_av_pomp) +
+aes(x = GM_pomp) +
   geom_histogram(fill = "orange") +
   theme_classic()
 
 Av_green_data_pomp %>% 
 ggplot() +
-aes(x = comp_av_pomp) +
+aes(x = CM_pomp) +
   geom_histogram(fill = "pink") +
   theme_classic()
 
 Av_green_data_pomp %>% 
 ggplot() +
-aes(x = intel_av_pomp) +
+aes(x = IM_pomp) +
   geom_histogram(bins = 50, fill = "purple") +
   theme_classic()
 
 Av_green_data_pomp %>% 
 ggplot() +
-aes(x = open_tav_pomp) +
+aes(x = OM_pomp) +
   geom_histogram(bins = 50, fill = "yellow") +
   theme_classic()
 
