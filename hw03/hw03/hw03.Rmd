@@ -116,14 +116,40 @@ aes(x = OM_pomp) +
      
 ```{r}
 Av_green_data_pomp %>% 
-  ggplot(is.na(student)) +
-  aes(green_av_pomp, comp_av_pomp)
-  geom_point(alpha = 0.5) 
+  filter(!is.na(student)) %>% 
+  ggplot() +
+  aes(y = CM_pomp,
+      x = GM_pomp,
+      group = student,
+      color = student,
+      fill = student,
+      alpha = 0.5) +
+  geom_jitter() +
+  geom_smooth(method = "lm")
   
 Av_green_data_pomp %>% 
-  ggplot(na.rm = TRUE) +
-  aes(green_av_pomp, intel_av_pomp)
-  geom_point(alpha = 0.5) 
+  filter(!is.na(student)) %>% 
+  ggplot() +
+  aes(y = IM_pomp,
+      x = GM_pomp,
+      group = student,
+      color = student,
+      fill = student, 
+      alpha = 0.5) +
+  geom_jitter() +
+  geom_smooth(method = "lm")
+
+Av_green_data_pomp %>% 
+  filter(!is.na(student)) %>% 
+  ggplot() +
+  aes(y = OM_pomp,
+      x = GM_pomp,
+      group = student,
+      color = student,
+      fill = student, 
+      alpha = 0.5) +
+  geom_jitter() +
+  geom_smooth(method = "lm")
   
 ```
      
