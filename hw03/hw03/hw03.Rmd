@@ -90,11 +90,19 @@ green_data_pomp <- green_datar %>%
                 .names = "{.col}_pomp"))
 
 print(green_data_pomp)
+
+Av_green_data_pomp <- green_data_pomp %>% 
+  rowwise() %>% 
+  mutate(green_av_pomp = sum(c_across(green1:green5), na.rm = TRUE),
+         comp_av_pomp = sum(c_across(comp1:comp10r), na.rm = TRUE),
+         intel_av_pomp = sum(c_across(intel1:intel10r), na.rm = TRUE),
+         open_tav_pomp = sum(c_across(open1:open10r), na.rm = TRUE))
 ```
      
   4. Make plots that illustrate the distributions of the 4 POMP-scored variables.
 ```{r}
-
+green_data_pomp %>% 
+ggplot() 
 ```
   
   5. Make scatterplots showing the relationships between **green reputation** and each personality trait.
