@@ -21,50 +21,25 @@ For your assignment, do the following.
 
 Get the summaries of each data file     
 ```{r}
-# dictionary %>% 
-#   summarize(dictionary)
-# 
-# green_data %>% 
-# summarize(green_data)
-# fixed_green_data <- green_data %>% 
-#                 na_if("-99")
+dictionary %>%
+  summarize(dictionary)
+
+#getting rid of the -99 values
+
+green_data_new <- green_data %>%
+                na_if("-99")
 
 
-# data_reversed <- c("green2",
-#                    "comp6",
-#                    "comp7",
-#                    "comp8",
-#                    "comp9",
-#                    "comp10",
-#                    "intel7",
-#                    "intel8",
-#                    "intel9",
-#                    "intel10",
-#                    "open7",
-#                    "open8",
-#                    "open9",
-#                    "open10")
-# 
-# recoded_green_data <- fixed_green_data %>% 
-#   mutate(across(all_of(data_reversed),
-#                 ~ recode(.x, "1"= 5,"2" = 4,"4" = 2,"5"= 1 ),
-#                 .names = "{.col}r") %>% 
-#            select(recoded_green_data))
+reversed <- dictionary %>%
+  filter(Keying == -1) %>%
+  pull(Item)
 
-
-#Restarting everything because I couldn't figure out what was wrong.
-print(green_data)
-
-reversed <- c("green2", "comp6", "comp7", "comp8", "comp9", "comp10", 
-              "intel7", "intel8", "intel9", "intel10", "open7", "open8", 
-              "open9", "open10")
-
-green_datar <- green_data %>% 
+green_datar <- green_data_new %>% 
   mutate(across(all_of(reversed),
                 ~ recode(.x, "1"= 5,"2" = 4,"4" = 2,"5"= 1 ),
                 .names = "{.col}r"))
 
-  
+green_data_new$student <- recode_factor(green_data_new$student, '1' = "Non-student", '2' = "Student", .default = NULL)
 
 
 #There are -99 s in the data file that needs to be recoded
@@ -93,10 +68,10 @@ print(green_data_pomp)
 
 Av_green_data_pomp <- green_data_pomp %>% 
   rowwise() %>% 
-  mutate(green_av_pomp = mean(c_across(green1:green5), na.rm = TRUE),
-         comp_av_pomp = mean(c_across(comp1:comp10r), na.rm = TRUE),
-         intel_av_pomp = mean(c_across(intel1:intel10r), na.rm = TRUE),
-         open_tav_pomp = mean(c_across(open1:open10r), na.rm = TRUE))
+  mutate(green_mean_pomp = mean(c_across(green1:green5), na.rm = TRUE),
+         comp_mean_pomp = mean(c_across(comp1:comp10r), na.rm = TRUE),
+         intel_mean_pomp = mean(c_across(intel1:intel10r), na.rm = TRUE),
+         open_mean_pomp = mean(c_across(open1:open10r), na.rm = TRUE))
 
 ```
      
@@ -121,6 +96,33 @@ Av_green_data_pomp %>%
 ggplot() +
   aes(open_tav_pomp,intel_av_pomp) +
   geom_smooth() 
+
+
+Av_green_data_pomp %>% 
+ggplot() +
+aes(x = green_av_pomp) +
+  geom_histogram(fill = "orange") +
+  theme_classic()
+
+Av_green_data_pomp %>% 
+ggplot() +
+aes(x = comp_av_pomp) +
+  geom_histogram(fill = "pink") +
+  theme_classic()
+
+Av_green_data_pomp %>% 
+ggplot() +
+aes(x = intel_av_pomp) +
+  geom_histogram(bins = 50, fill = "purple") +
+  theme_classic()
+
+Av_green_data_pomp %>% 
+ggplot() +
+aes(x = open_tav_pomp) +
+  geom_histogram(bins = 50, fill = "yellow") +
+  theme_classic()
+
+
 ```
   
   5. Make scatterplots showing the relationships between **green reputation** and each personality trait.
@@ -128,7 +130,16 @@ ggplot() +
      What do these plots show?
      
 ```{r}
-
+Av_green_data_pomp %>% 
+  ggplot(is.na(student)) +
+  aes(green_av_pomp, comp_av_pomp)
+  geom_point(alpha = 0.5) 
+  
+Av_green_data_pomp %>% 
+  ggplot(na.rm = TRUE) +
+  aes(green_av_pomp, intel_av_pomp)
+  geom_point(alpha = 0.5) 
+  
 ```
      
   6. Compare **green reputation** for students and non-students using a **rainfall plot** (bar + density + data points).
