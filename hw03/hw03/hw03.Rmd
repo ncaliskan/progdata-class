@@ -93,21 +93,44 @@ print(green_data_pomp)
 
 Av_green_data_pomp <- green_data_pomp %>% 
   rowwise() %>% 
-  mutate(green_av_pomp = sum(c_across(green1:green5), na.rm = TRUE),
-         comp_av_pomp = sum(c_across(comp1:comp10r), na.rm = TRUE),
-         intel_av_pomp = sum(c_across(intel1:intel10r), na.rm = TRUE),
-         open_tav_pomp = sum(c_across(open1:open10r), na.rm = TRUE))
+  mutate(green_av_pomp = mean(c_across(green1:green5), na.rm = TRUE),
+         comp_av_pomp = mean(c_across(comp1:comp10r), na.rm = TRUE),
+         intel_av_pomp = mean(c_across(intel1:intel10r), na.rm = TRUE),
+         open_tav_pomp = mean(c_across(open1:open10r), na.rm = TRUE))
+
 ```
      
   4. Make plots that illustrate the distributions of the 4 POMP-scored variables.
 ```{r}
-green_data_pomp %>% 
-ggplot() 
+Av_green_data_pomp %>% 
+ggplot() +
+  aes(comp_av_pomp,green_av_pomp) +
+  geom_smooth(method = lm) 
+
+Av_green_data_pomp %>% 
+ggplot() +
+  aes(comp_av_pomp,intel_av_pomp) +
+  geom_smooth(method = lm) 
+
+Av_green_data_pomp %>% 
+ggplot() +
+  aes(comp_av_pomp,open_tav_pomp) +
+  geom_smooth(method = lm) 
+
+Av_green_data_pomp %>% 
+ggplot() +
+  aes(open_tav_pomp,intel_av_pomp) +
+  geom_smooth(method = lm) 
 ```
   
   5. Make scatterplots showing the relationships between **green reputation** and each personality trait.
      Include trend lines for **students** and **non-students**.
      What do these plots show?
+     
+```{r}
+
+```
+     
   6. Compare **green reputation** for students and non-students using a **rainfall plot** (bar + density + data points).
   7. Compute a summary table of means, SDs, medians, minima, and maxima for the four total scores for students and non-students.
   
