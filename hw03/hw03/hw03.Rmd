@@ -110,17 +110,17 @@ ggplot() +
 Av_green_data_pomp %>% 
 ggplot() +
   aes(comp_av_pomp,intel_av_pomp) +
-  geom_smooth(method = lm) 
+  geom_smooth() 
 
 Av_green_data_pomp %>% 
 ggplot() +
   aes(comp_av_pomp,open_tav_pomp) +
-  geom_smooth(method = lm) 
+  geom_smooth() 
 
 Av_green_data_pomp %>% 
 ggplot() +
   aes(open_tav_pomp,intel_av_pomp) +
-  geom_smooth(method = lm) 
+  geom_smooth() 
 ```
   
   5. Make scatterplots showing the relationships between **green reputation** and each personality trait.
