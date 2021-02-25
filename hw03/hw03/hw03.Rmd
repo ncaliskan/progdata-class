@@ -1,3 +1,11 @@
+---
+title: "Homework 3"
+author: "Neslihan Caliskan"
+date: "2/24/2021"
+output: 
+  github_document: default
+  html_document: default
+---
 # Homework 03
 
 You will analyze data looking at the relationship between **green reputation** and three personality traits--**compassion**, **intellectual curiosity**, and **openness to experiences**.
