@@ -160,6 +160,8 @@ Av_green_data_pomp %>%
   geom_jitter() +
   geom_smooth(method = "lm")
   
+#For all comparisons, the students had slightly higher scores but the difference was not large. 
+
 ```
      
   6. Compare **green reputation** for students and non-students using a **rainfall plot** (bar + density + data points).
@@ -204,6 +206,7 @@ summary_GD <- Av_green_data_pomp %>%
             )))
 
 #Even though I ran the code to recode student names at the end it still showed them as 1 & 2. 
+#Students had higher average of oveal Openness scores. On average, non-students have higher environmental consciousness. 
 ```
 
 
