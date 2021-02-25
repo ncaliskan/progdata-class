@@ -3,8 +3,8 @@ title: "Homework 3"
 author: "Neslihan Caliskan"
 date: "2/24/2021"
 output: 
-  github_document: default
   html_document: default
+  github_document: default
 ---
 # Homework 03
 
@@ -69,7 +69,7 @@ green_datar %>%
      Name the recaled variables `*_pomp`.
 ```{r}
 green_data_pomp <- green_datar %>% 
-  mutate(across(c(green1:open10),
+  mutate(across(c(green1:open10r),
          ~ recode(.x, "1"= 0,"2" = 25, "3" = 50, "4" = 75,"5"= 100),
                 .names = "{.col}_pomp"))
 
@@ -81,6 +81,8 @@ Av_green_data_pomp <- green_data_pomp %>%
          CM_pomp = mean(c_across(comp1:comp10r), na.rm = TRUE),
          IM_pomp = mean(c_across(intel1:intel10r), na.rm = TRUE),
          OM_pomp = mean(c_across(open1:open10r), na.rm = TRUE))
+
+Av_green_data_pomp$student <- recode_factor(Av_green_data_pomp$student, '1' = "Non-student", '2' = "Student", .default = NULL)
 
 ```
      
@@ -177,13 +179,15 @@ ggplot(na.omit(Av_green_data_pomp)) +
                alpha = .5,
                width = .1,
                size =.5) +
-  ggdist::stat_slab(height = 3,
+  ggdist::stat_slab(height = .5,
                     color = "black",
                     size = .2,
                     alpha = .5,
-                    position = position_nudge((y=.2)))
+                    position = position_nudge((y=.4)))
 
-#I couldn't run this code properly, could you help me figure out why?
+
+
+#Overall, students had higher environmental awareness scores compared to non students
 
   
 ```
