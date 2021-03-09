@@ -2,7 +2,6 @@
 
 # Final Project Template
 
-<<<<<<< HEAD
 ***Hello everyone!!*** :hear_no_evil:
 Welcome to my **Final Project**! 
 =======
@@ -21,7 +20,6 @@ This is template repository for hosting and posting your homework assignments fo
 - [x] Insert a header
 - [x] Explain the structure of your project 
 - [x] Help visitors navigate through your project
-=======
-Hello world again! :)
+
 
 
