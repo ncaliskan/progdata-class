@@ -42,7 +42,9 @@ You should write a script to do the following:
   aes(rAVG,`Average ABV`) +
         geom_point(alpha = 0.5,
                    color = "blue") +
-  theme_bw()
+  theme_bw() +
+  ggsave("plots.pdf")
+
 
 ```
 
