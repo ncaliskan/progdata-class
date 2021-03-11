@@ -18,6 +18,14 @@ if ( !dir.exists( here::here("final_project", "data") ) ) {
   dir.create( here::here("final_project", "data"), recursive = TRUE )
 }
 
+#Couldn't run this code properly :(
+Data_fproj <- read_csv(here::here("final_project", "data", "demographics.csv") %>% 
+                      (here::here("final_project", "data", "metabolicsyndrome.csv") %>% 
+                      (here::here("final_project", "data", "regressiondiagnosis.csv"))))
+
+```
+
+```{r}
 
 ```
 
