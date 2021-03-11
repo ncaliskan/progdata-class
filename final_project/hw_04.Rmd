@@ -57,3 +57,16 @@ Data_fproj %>%
 
 ```
 
+```{r}
+Data_fproj %>%
+  ggplot()+
+  aes(x = Sex,
+      y = AGE) +
+  geom_jitter(fill = "blue" , 
+             color = "blue", 
+             alpha = .4,
+             size = 3,
+             shape = 20) +
+  theme_bw()
+```
+
