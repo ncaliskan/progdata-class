@@ -10,10 +10,10 @@ This is template repository for hosting and posting your homework assignments fo
 
 
 ## My Project Outline :information_desk_person:
-**My project will be outlined as:**
-1. data folder
+**For now, my project will be outlined as:**
+1. data folder that contains the raw data
 2. hw_04 R Markdown file
-3. Another file that contains the raw data 
+3. Another file that contains the outputs (i.e.,plots)
 
 
 ### To-do List
