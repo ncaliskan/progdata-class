@@ -7,7 +7,17 @@ output:
   github_document: default
 ---
 
+Read in the excel file from the internet
+1. load in the package that will allow you to download an excel file
+2. enter the dir.create() apackage for setting your working directory
+3. 
 ```{r}
+library(readxl)
+
+if ( !dir.exists( here::here("final_project", "data") ) ) {
+  dir.create( here::here("final_project", "data"), recursive = TRUE )
+}
+
 
 ```
 
