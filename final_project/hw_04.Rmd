@@ -3,8 +3,8 @@ title: "hw_04"
 author: "Neslihan Caliskan"
 date: "3/8/2021"
 output: 
-  html_document: default
   github_document: default
+  html_document: default
 ---
 
 Read in the excel file from the internet
