@@ -3,8 +3,8 @@ title: "hw_04"
 author: "Neslihan Caliskan"
 date: "3/8/2021"
 output: 
-  github_document: default
   html_document: default
+  github_document: default
 ---
 
 Read in the excel file from the internet
@@ -69,5 +69,7 @@ Data_fproj %>%
              size = 3,
              shape = 20) +
   theme_bw()
+
+ggsave("agevssex.pdf")
 ```
 
