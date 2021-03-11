@@ -21,7 +21,8 @@ if ( !dir.exists( here::here("final_project", "data") ) ) {
   dir.create( here::here("final_project", "data"), recursive = TRUE )
 }
 
-#datafrom: https://data.gov.au/dataset/ds-sa-21386a53-56a1-4edf-bd0b-61ed15f10acf/distribution/dist-sa-0f522af2-ad29-47b4-82dc-12c9cbe79796/details?q=
+url <- "https://data.sa.gov.au/data/dataset/21386a53-56a1-4edf-bd0b-61ed15f10acf/resource/0f522af2-ad29-47b4-82dc-12c9cbe79796/download/2019_data_sa_as_at_20200708.zip"
+
 
 Data_fproj <- read_csv(here::here("data", "crashreason_2019.csv"),
                        col_types = cols(
