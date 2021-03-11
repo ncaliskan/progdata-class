@@ -13,6 +13,9 @@ Read in the excel file from the internet
 
 ```{r}
 library(readxl)
+library(tidyverse)
+library(readr)
+library(ggplot2)
 
 if ( !dir.exists( here::here("final_project", "data") ) ) {
   dir.create( here::here("final_project", "data"), recursive = TRUE )
@@ -44,6 +47,13 @@ Data_fproj <- read_csv(here::here("data", "crashreason_2019.csv"),
 ```
 
 ```{r}
+Data_fproj %>% 
+  summarise(across(
+    mean = ~mean(.x, na.rm = TRUE),
+    sd = ~sd(.x, na.rm = TRUE)
+              
+                   ))
+
 
 ```
 
