@@ -29,6 +29,7 @@ For your assignment, do the following.
      Is anything unusual?
 
 Get the summaries of each data file     
+
 ```{r}
 dictionary %>%
   summarize(dictionary)
@@ -56,17 +57,20 @@ green_data_new$student <- recode_factor(green_data_new$student, '1' = "Non-stude
      
   2. Compute total scores for the four scales. 
      Recode variables as needed.
+     
 ```{r}
 green_datar %>% 
   rowwise() %>% 
-  mutate(green_tot = sum(c_across(green1:green5), na.rm = TRUE),
+  mutate(green_tot = sum(c_across(green1:green5), na.rm = TRUE), # BMW: In general, use mean() instead of sum() for total scores--it's more robust to missing data
          comp_tot = sum(c_across(comp1:comp10r), na.rm = TRUE),
          intel_tot = sum(c_across(intel1:intel10r), na.rm = TRUE),
-         open_tot = sum(c_across(open1:open10r), na.rm = TRUE))
+         open_tot = sum(c_across(open1:open10r), na.rm = TRUE)) %>% 
+  ungroup() # BMW: be sure to ungroup() after using rowwise() or group_by()
 ```
     
   3. Rescale the variables so that they go from 0-100 instead of the original range.
      Name the recaled variables `*_pomp`.
+     
 ```{r}
 green_data_pomp <- green_datar %>% 
   mutate(across(c(green1:open10r),
@@ -87,11 +91,12 @@ Av_green_data_pomp$student <- recode_factor(Av_green_data_pomp$student, '1' = "N
 ```
      
   4. Make plots that illustrate the distributions of the 4 POMP-scored variables.
+  
 ```{r}
 Av_green_data_pomp %>% 
 ggplot() +
   aes(CM_pomp,GM_pomp) +
-  geom_smooth(method = lm) 
+  geom_smooth(method = lm) # BMW: In general, always inlcude data points, not only trend lines, when making plots
 
 
 Av_green_data_pomp %>% 
@@ -121,6 +126,8 @@ aes(x = OM_pomp) +
 
 ```
   
+  <!-- BMW: Also include narrative discussion of your results as Markdown text, not code comments. -->
+  
   5. Make scatterplots showing the relationships between **green reputation** and each personality trait.
      Include trend lines for **students** and **non-students**.
      What do these plots show?
@@ -133,9 +140,8 @@ Av_green_data_pomp %>%
       x = GM_pomp,
       group = student,
       color = student,
-      fill = student,
-      alpha = 0.5) +
-  geom_jitter() +
+      fill = student) + # BMW: Do not include fixed values like alpha = .5 inside aes(). Instead aes() only include variable names. 
+  geom_point(alpha = .5) + # BMW: In general, don't use geom_jitter() with two continuous variables. Use geom_point() instead.
   geom_smooth(method = "lm")
   
 Av_green_data_pomp %>% 
@@ -145,9 +151,8 @@ Av_green_data_pomp %>%
       x = GM_pomp,
       group = student,
       color = student,
-      fill = student, 
-      alpha = 0.5) +
-  geom_jitter() +
+      fill = student) +
+  geom_point(alpha = .5) +
   geom_smooth(method = "lm")
 
 Av_green_data_pomp %>% 
@@ -157,15 +162,16 @@ Av_green_data_pomp %>%
       x = GM_pomp,
       group = student,
       color = student,
-      fill = student, 
-      alpha = 0.5) +
-  geom_jitter() +
+      fill = student) +
+  geom_point(alpha = .5) +
   geom_smooth(method = "lm")
-  
-#For all comparisons, the students had slightly higher scores but the difference was not large. 
 
 ```
      
+For all comparisons, the students had slightly higher scores but the difference was not large.
+
+<!-- BMW: Put your narrative discussion as regular text, not code comments -->
+
   6. Compare **green reputation** for students and non-students using a **rainfall plot** (bar + density + data points).
   
 ```{r}
