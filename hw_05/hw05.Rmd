@@ -29,6 +29,12 @@ Each dataset contains the following information for the Top 3 selling scented or
 library(dplyr)
 ```
 
+Read in the sheets
+```{r}
+scented_data <- readxl::read_xlsx("Scented_all.xlsx")
+
+unscented_data <- readxl::read_xlsx("Unscented_all.xlsx")
+```
 
 ## Part 1: Average daily ratings for scented and unscented candles
 
