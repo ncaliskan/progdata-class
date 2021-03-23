@@ -27,6 +27,7 @@ Each dataset contains the following information for the Top 3 selling scented or
 
 ```{r setup, include=FALSE}
 library(dplyr)
+library(ggplot2)
 ```
 
 Read in the sheets
@@ -62,7 +63,8 @@ Interpret these graphs.
 What do they show about scented candles over the time period?
 
 ```{r}
-
+ggplot(scented_data, aes(as.Date(Date), Rating)) +
+  geom_point(alpha = 0.1) 
 ```
 
 
