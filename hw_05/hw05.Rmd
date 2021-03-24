@@ -63,8 +63,16 @@ Interpret these graphs.
 What do they show about scented candles over the time period?
 
 ```{r}
-ggplot(scented_data, aes(as.Date(Date), Rating)) +
-  geom_point(alpha = 0.1) 
+
+scented_data_av <- scented_data %>% 
+  filter(Date > "2017-01-01") %>% 
+  group_by(Date) %>% 
+  mutate(MN = mean(Rating))
+
+
+ggplot(scented_data_av, aes(as.Date(Date), MN)) +
+  geom_point(alpha = 0.1) +
+  scale_x_date("Date", date_labels = "%m-%Y", date_breaks = "6 months")
 ```
 
 
