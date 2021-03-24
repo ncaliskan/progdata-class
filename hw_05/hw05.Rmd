@@ -81,6 +81,24 @@ ggplot(scented_data_av, aes(as.Date(Date), MN)) +
 ```
 
 
+```{r}
+unscented_data_av <- unscented_data %>% 
+  filter(Date > "2017-01-01") %>% 
+  group_by(Date) %>% 
+  mutate(MN = mean(Rating))
+
+ggplot(unscented_data_av, aes(as.Date(Date), MN)) +
+  geom_point(alpha = 0.1,
+             color = "blue",
+             fill = "blue") +
+  scale_x_date("Date", date_labels = "%m-%Y", date_breaks = "6 months") +
+  scale_y_discrete(name = "Average Daily Rating") +
+  geom_smooth(method = "loess") +
+  geom_vline(xintercept = as.numeric(as.Date("2020-01-01")))
+
+```
+
+
 ## Part 2: Combined plot
 
 Combine the two datasets into one and make a plot similar to above, but showing both unscented and scented candles.
