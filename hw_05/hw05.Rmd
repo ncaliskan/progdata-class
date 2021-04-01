@@ -1,10 +1,10 @@
 ---
 title: "Consequences of Covid-19 for Candle Critiques"
-author: "Your Name Here"
+author: "Nesli Caliskan"
 date: "3/22/2021"
 output: 
-  github_document: default
   html_document: default
+  github_document: default
 ---
 
 For this assignment, you will produce a report exploring the impact of Covid-19 on scented candle ratings.
@@ -106,7 +106,7 @@ ggplot(unscented_data_av, aes(as.Date(Date), MN)) +
 Combine the two datasets into one and make a plot similar to above, but showing both unscented and scented candles.
 Distinguish scented versus unscented candles using color, shape, and line type (for the trend lines).
 
-```{r combine datasets, eval=FALSE}
+```{r combine datasets, eval=TRUE}
 candles_full <- bind_rows(
 	scented = scented_data, 
 	unscented = unscented_data, 
@@ -124,11 +124,11 @@ MN = mean(Rating)
 
 
 ```{r}
-# candles_fulls %>%
-# ggplot() +
-# aes(x = Date, y = Rating, color = Scented, fill = Scented, shape = Scented) +
-# geom_point(alpha = 0.4) +
-# geom_smooth(method = "loess")
+candles_fulls %>%
+ggplot() +
+aes(x = Date, y = Rating, color = Scented, fill = Scented, shape = Scented) +
+geom_point(alpha = 0.4) +
+geom_smooth(method = "loess")
 ```
 
 Which of these two sets of plots do you find easier to interpret?
