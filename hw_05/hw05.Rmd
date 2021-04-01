@@ -124,11 +124,11 @@ MN = mean(Rating)
 
 
 ```{r}
-candles_fulls %>%
-ggplot() +
-aes(x = Date, y = Rating, color = Scented, fill = Scented, shape = Scented) +
-geom_point(alpha = 0.4) +
-geom_smooth(method = "loess")
+# candles_fulls %>%
+# ggplot() +
+# aes(x = Date, y = Rating, color = Scented, fill = Scented, shape = Scented) +
+# geom_point(alpha = 0.4) +
+# geom_smooth(method = "loess")
 ```
 
 Which of these two sets of plots do you find easier to interpret?
