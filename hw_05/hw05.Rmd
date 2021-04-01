@@ -28,7 +28,7 @@ Each dataset contains the following information for the Top 3 selling scented or
   4. `Review`: For the scented candles, the text of the review.
 
 ```{r setup, include=FALSE}
-library(dplyr)
+library(tidyverse)
 library(ggplot2)
 ```
 
@@ -114,12 +114,12 @@ candles_full <- bind_rows(
 )
 
 
-# candles_full <- candles_full %>%
-# filter(Date > "2017-01-01") %>%
-# group_by(Date) %>%
-# mutate(
-# MN = mean(Rating)
-# )
+candles_full <- candles_full %>%
+filter(Date > "2017-01-01") %>%
+group_by(Date) %>%
+mutate(
+MN = mean(Rating)
+)
 ```
 
 
@@ -172,24 +172,36 @@ str_no_scent <- function(x){
   	)
   )
 }
-```
 
+scented_data$ScentReview <- str_no_scent(scented_data$Review)
+scented_data$ScentReview2 <- factor(scented_data$ScentReview , labels = c("Scented", "Unscented"))
+```
 
 
 ```{r}
-scented_candles_plot <- scented_data %>% 
-  filter(Date >= "2019-01-01") %>% 
-  mutate(month = lubridate::floor_date(Date, "month"),
-         str_unscented_review = str_unscented(Review)) %>% 
-  group_by(as.Date(month), unscented_review) %>% 
-  ggplot(as.Date(month), unscented_review) +
-  geom_bar(color = "blue",
-           fill = "blue") +
-  scale_x_date("Date", date_labels = "%m-%Y", date_breaks = "month") +
-  scale_y_continuous(name = "Unscented Reviews") 
-
-# <!-- When I try to run the code it gives me this error: Problem with `mutate()` input `unscented_review`. x could not find function "str_unscented" ℹ Input `unscented_review` is `str_unscented(Review)
+Unscented_Review <- scented_data %>%
+  filter(Date > "2019-01-01") %>%
+  mutate(month = lubridate::floor_date(Date, "month")) %>%
+  mutate(Review = str_no_scent(Review)) %>% 
+  group_by(ScentReview2, month)
 ```
+
+```{r}
+Unscented_Review %>%
+  ggplot() +
+  aes(x = month ,
+        y = (..count..)/sum(..count..), 
+        fill = ScentReview2, 
+        color = month
+        ) +
+  geom_bar() +
+  labs(title = "Candle Scent Reviews for Unscented Candles in 2019-2020") +
+  scale_y_continuous("Proportion of Reviews") +
+  guides(x = guide_axis(n.dodge = 2), color = guide_legend(title = "SCENT"), fill = guide_legend(title = "SCENT")) 
+  
+```
+
+
 
 What pattern do you see?
 Is there a trend over time regarding smell-related reviews? 
