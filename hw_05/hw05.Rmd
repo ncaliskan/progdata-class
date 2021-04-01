@@ -3,8 +3,8 @@ title: "Consequences of Covid-19 for Candle Critiques"
 author: "Your Name Here"
 date: "3/22/2021"
 output: 
-  github_document: default
   html_document: default
+  github_document: default
 ---
 
 For this assignment, you will produce a report exploring the impact of Covid-19 on scented candle ratings.
@@ -114,7 +114,7 @@ candles_full <- bind_rows(
 )
 
 
-candles_full <- candles_full %>%
+candles_fulls <- candles_full %>%
 filter(Date > "2017-01-01") %>%
 group_by(Date) %>%
 mutate(
@@ -124,7 +124,7 @@ MN = mean(Rating)
 
 
 ```{r}
-candles_full %>%
+candles_fulls %>%
 ggplot() +
 aes(x = Date, y = Rating, color = Scented, fill = Scented, shape = Scented) +
 geom_point(alpha = 0.4) +
