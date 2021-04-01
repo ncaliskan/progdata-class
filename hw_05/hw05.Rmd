@@ -206,3 +206,6 @@ Unscented_Review %>%
 What pattern do you see?
 Is there a trend over time regarding smell-related reviews? 
 How does 2020 compare to 2019?
+
+There is a dramatic decrease in the reviews for the scent of candles which may be related to the fact that Covid-19 causes loss of smell in patients.
+
