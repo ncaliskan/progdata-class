@@ -3,8 +3,8 @@ title: "Consequences of Covid-19 for Candle Critiques"
 author: "Your Name Here"
 date: "3/22/2021"
 output: 
-  html_document: default
   github_document: default
+  html_document: default
 ---
 
 For this assignment, you will produce a report exploring the impact of Covid-19 on scented candle ratings.
