@@ -114,21 +114,21 @@ candles_full <- bind_rows(
 )
 
 
-candles_full <- candles_full %>%
-filter(Date > "2017-01-01") %>%
-group_by(Date) %>%
-mutate(
-MN = mean(Rating)
-)
+# candles_full <- candles_full %>%
+# filter(Date > "2017-01-01") %>%
+# group_by(Date) %>%
+# mutate(
+# MN = mean(Rating)
+# )
 ```
 
 
 ```{r}
-# candles_full %>%
-# ggplot() +
-# aes(x = Date, y = Rating, color = Scented, fill = Scented, shape = Scented) +
-# geom_point(alpha = 0.4) +
-# geom_smooth(method = "loess") 
+candles_full %>%
+ggplot() +
+aes(x = Date, y = Rating, color = Scented, fill = Scented, shape = Scented) +
+geom_point(alpha = 0.4) +
+geom_smooth(method = "loess")
 ```
 
 Which of these two sets of plots do you find easier to interpret?
@@ -155,27 +155,40 @@ Hints:
   3. Use the function below to detect "no smell"-related text in the `Review` column.
 
 ```{r no scent function, include=FALSE}
-# str_no_scent <- function(x){
-#   as.numeric(
-#   	case_when(
-#   		str_detect(x, "[Nn]o scent") ~ "1", 
-#   		str_detect(x, "[Nn]o smell") ~ "1",
-#   		str_detect(x, "[Dd]oes not smell like") ~ "1",
-#   		str_detect(x, "[Dd]oesn't smell like") ~ "1",
-#   		str_detect(x, "[Cc]an't smell") ~ "1",
-#   		str_detect(x, "[Cc]annot smell") ~ "1",
-#   		str_detect(x, "[Ff]aint smell") ~ "1",
-#   		str_detect(x, "[Ff]aint scent") ~ "1",
-#   		str_detect(x, "[Dd]on't smell") ~ "1",
-#   		str_detect(x, "[Ll]ike nothing") ~ "1",
-#   		TRUE ~ "0"
-#   	)
-#   )
-# }
+str_no_scent <- function(x){
+  as.numeric(
+  	case_when(
+  		str_detect(x, "[Nn]o scent") ~ "1",
+  		str_detect(x, "[Nn]o smell") ~ "1",
+  		str_detect(x, "[Dd]oes not smell like") ~ "1",
+  		str_detect(x, "[Dd]oesn't smell like") ~ "1",
+  		str_detect(x, "[Cc]an't smell") ~ "1",
+  		str_detect(x, "[Cc]annot smell") ~ "1",
+  		str_detect(x, "[Ff]aint smell") ~ "1",
+  		str_detect(x, "[Ff]aint scent") ~ "1",
+  		str_detect(x, "[Dd]on't smell") ~ "1",
+  		str_detect(x, "[Ll]ike nothing") ~ "1",
+  		TRUE ~ "0"
+  	)
+  )
+}
 ```
 
-```{r}
 
+
+```{r}
+scented_candles_plot <- scented_data %>% 
+  filter(Date >= "2019-01-01") %>% 
+  mutate(month = lubridate::floor_date(Date, "month"),
+         str_unscented_review = str_unscented(Review)) %>% 
+  group_by(as.Date(month), unscented_review) %>% 
+  ggplot(as.Date(month), unscented_review) +
+  geom_bar(color = "blue",
+           fill = "blue") +
+  scale_x_date("Date", date_labels = "%m-%Y", date_breaks = "month") +
+  scale_y_continuous(name = "Unscented Reviews") 
+
+# <!-- When I try to run the code it gives me this error: Problem with `mutate()` input `unscented_review`. x could not find function "str_unscented" ℹ Input `unscented_review` is `str_unscented(Review)
 ```
 
 What pattern do you see?
