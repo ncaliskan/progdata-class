@@ -108,7 +108,8 @@ retk <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/dat
 1. Combine these into a single tibble.
 
 ```{r}
-FILL_THIS_IN(fell, FILL_THIS_IN)
+full_join(fell, ttow, by = c("Film", "Race", "Female", "Male")) %>% 
+  full_join(retk, by = c("Film", "Race", "Female", "Male"))
 ```
 
 2. Which races are present in "The Fellowship of the Ring" (`fell`), but not in 
