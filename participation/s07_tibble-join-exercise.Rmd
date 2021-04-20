@@ -57,6 +57,9 @@ Let's take a look at them (after minor modifications by renaming and shuffling):
 ```{r}
 release_date %>% 
   left_join(album, by = "song", "artist_name")
+
+release_date %>% 
+  right_join(album, by = "song", "artist_name")
 ```
 
 2. Go ahead and add the corresponding albums to the `release_date` tibble, being sure to 
@@ -78,7 +81,7 @@ release_date %>%
 
 ```{r}
 release_date %>% 
-  anti_join(album, by = "FILL_THIS_IN")
+  anti_join(album, by = "artist_name")
 ```
 
 
@@ -86,8 +89,8 @@ release_date %>%
    available in one tibble. What would you do?
 
 ```{r}
-FILL_THIS_IN %>% 
-  FILL_THIS_IN(FILL_THIS_IN, by = "song")
+release_date %>% 
+  full_join(album, by = "song")
 ```
 
 
