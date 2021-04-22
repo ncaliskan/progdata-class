@@ -1,0 +1,75 @@
+---
+title: "hw_04"
+author: "Neslihan Caliskan"
+date: "3/8/2021"
+output: 
+  html_document: default
+  github_document: default
+---
+
+Read in the excel file from the internet
+1. load in the package that will allow you to download an excel file
+2. enter the dir.create() apackage for setting your working directory
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(readr)
+library(ggplot2)
+
+if (!dir.exists(here::here("final_project", "data"))) {
+  dir.create(here::here("final_project", "data"), recursive = TRUE)
+}
+
+url <- "https://data.sa.gov.au/data/dataset/21386a53-56a1-4edf-bd0b-61ed15f10acf/resource/0f522af2-ad29-47b4-82dc-12c9cbe79796/download/2019_data_sa_as_at_20200708.zip"
+
+
+# WDG: I get "6121 parsing failures". when I run this. Double check the behavior of the functions and make sure you get what you want.
+
+Data_fproj <- read_csv(here::here("data", "crashreason_2019.csv"),
+  col_types = cols(
+    REPORT_ID = col_double(),
+    UND_UNIT_NUMBER = col_double(),
+    CASUALTY_NUMBER = col_double(),
+    `Casualty Type` = col_character(),
+    Sex = col_character(),
+    AGE = col_double(),
+    `Position In Veh` = col_character(),
+    `Thrown Out` = col_character(),
+    `Injury Extent` = col_character(),
+    `Seat Belt` = col_character(),
+    Helmet = col_character(),
+    Hospital = col_character()
+  )
+)
+```
+
+```{r}
+# WDG: What is this summarizing?
+Data_fproj %>%
+  summarise(across(
+    mean = ~ mean(.x, na.rm = TRUE),
+    sd = ~ sd(.x, na.rm = TRUE)
+  ))
+```
+
+```{r}
+# WDG: A title is very important when it comes to graphs. Try and answer the question: "What am I looking at?" when thinking of a title.
+Data_fproj %>%
+  ggplot() +
+  aes(
+    x = Sex,
+    y = AGE
+  ) +
+  geom_jitter(
+    fill = "blue",
+    color = "blue",
+    alpha = .4,
+    size = 3,
+    shape = 20
+  ) +
+  theme_bw()
+
+# WDG: We have to write (write.csv()) things
+ggsave("agevssex.pdf")
+```
