@@ -37,15 +37,17 @@ staff_population <-  read_csv(here("data", "staff_populations.csv"))
 ```
 
 
+Renamed the column so the names for it wouldn't overlap across different datasets when I join them together.
 ```{r}
+(staff_population %>% 
+   rename(staff_april_pop = april_pop))
 
 ```
 
-
-
-
-
+Joining all three datasets together
 ```{r}
+full_join(staff_population, covid_population, by = c("name", "abbreviation")) %>% 
+  full_join(covid_prison_case, by = c("name", "abbreviation"))
 ```
 
 
