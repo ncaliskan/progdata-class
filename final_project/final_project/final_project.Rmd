@@ -1,0 +1,38 @@
+---
+title: "Caliskan_finalproj"
+author: "Neslihan Caliskan"
+date: "5/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r load in packages}
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(here)
+```
+
+
+```{r}
+if ( !dir.exists( here::here("final_project", "data") ) ) {
+  dir.create( here::here("final_project", "data", "output", ".R"), recursive = TRUE )
+}
+```
+
+```{r}
+covid_prison_case <- read_csv(here("data", "covid_prison_cases.csv"))
+                       
+covid_prison_rate <- read_csv(here("data", "covid_prison_rates.csv"))
+                       
+covid_population <-  read_csv(here("data", "prison_populations.csv"))
+                   
+staff_population <-  read_csv(here("data", "staff_populations.csv"))
+```
+
+
+```{r}
