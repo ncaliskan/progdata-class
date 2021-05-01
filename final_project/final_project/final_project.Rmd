@@ -56,20 +56,23 @@ Merged_Covid_Data <- full_join(staff_population, covid_population, by = c("name"
 
 Filtering to see all the Florida data
 ```{r}
-Florida_Data <- Merged_Covid_Data %>% 
-  filter(name == "Florida") 
+Florida_Data <- covid_prison_case %>% 
+  filter(name == "Florida") %>% 
+  select(as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
 ```
 
 
 ```{r}
-Clean_Florida_Data <- Florida_Data %>%  
-select(as_of_date.x, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
+Staff_Data_FL <- staff_population %>% 
+   filter(name == "Florida") %>% 
+    select(as_of_date, april_pop)
 
 ```
 
 
 ```{r}
-
+Prisoner_Data_FL <- covid_population %>% 
+   filter(name == "Florida") 
 ```
 
 
