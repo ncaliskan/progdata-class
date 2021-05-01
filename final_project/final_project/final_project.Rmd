@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
+Loading in datasets
 ```{r load in packages}
 library(tidyverse)
 library(readr)
@@ -26,6 +26,7 @@ if ( !dir.exists( here::here("final_project", "data") ) ) {
 }
 ```
 
+Loading in csv files
 ```{r load in csv files}
 covid_prison_case <- read_csv(here("data", "covid_prison_cases.csv"))
                        
@@ -46,10 +47,15 @@ Renamed the column so the names for it wouldn't overlap across different dataset
 
 Joining all three datasets together
 ```{r}
-full_join(staff_population, covid_population, by = c("name", "abbreviation")) %>% 
+Merged_Covid_Data <- full_join(staff_population, covid_population, by = c("name", "abbreviation")) %>% 
   full_join(covid_prison_case, by = c("name", "abbreviation"))
 ```
 
+
+
+```{r}
+
+```
 
 
 ```{r}
