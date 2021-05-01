@@ -49,8 +49,8 @@ Renamed the column so the names for it wouldn't overlap across different dataset
 
 Joining all three datasets together
 ```{r}
-Merged_Covid_Data <- full_join(staff_population, covid_population, by = c("name", "abbreviation")) %>% 
-  full_join(covid_prison_case, by = c("name", "abbreviation"))
+# Merged_Covid_Data <- full_join(staff_population, covid_population, by = c("name", "abbreviation")) %>% 
+#   full_join(covid_prison_case, by = c("name", "abbreviation"))
 
 ```
 
@@ -73,6 +73,24 @@ Staff_Data_FL <- staff_population %>%
 ```{r}
 Prisoner_Data_FL <- covid_population %>% 
    filter(name == "Florida") 
+```
+
+
+```{r}
+ggplot(Florida_Data, aes(as.Date(as_of_date), total_staff_cases)) +
+  geom_point(alpha = 0.1,
+             color = "purple",
+             fill = "purple") +
+  scale_x_date("Date", date_labels = "%m-%Y") +
+  scale_y_discrete(name = "Total Staff Cases") +
+  geom_smooth(method = "loess") +
+  geom_vline(xintercept = as.numeric(as.Date("2020-01-01")))
+```
+
+
+
+```{r}
+
 ```
 
 
