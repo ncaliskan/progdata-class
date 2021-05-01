@@ -24,6 +24,7 @@ library(here)
 if ( !dir.exists( here::here("final_project", "data") ) ) {
   dir.create( here::here("final_project", "data", "output", ".R"), recursive = TRUE )
 }
+
 ```
 
 Loading in csv files
@@ -35,6 +36,7 @@ covid_prison_rate <- read_csv(here("data", "covid_prison_rates.csv"))
 covid_population <-  read_csv(here("data", "prison_populations.csv"))
                    
 staff_population <-  read_csv(here("data", "staff_populations.csv"))
+
 ```
 
 
@@ -49,8 +51,21 @@ Joining all three datasets together
 ```{r}
 Merged_Covid_Data <- full_join(staff_population, covid_population, by = c("name", "abbreviation")) %>% 
   full_join(covid_prison_case, by = c("name", "abbreviation"))
+
 ```
 
+Filtering to see all the Florida data
+```{r}
+Florida_Data <- Merged_Covid_Data %>% 
+  filter(name == "Florida") 
+```
+
+
+```{r}
+Clean_Florida_Data <- Florida_Data %>%  
+select(as_of_date.x, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
+
+```
 
 
 ```{r}
