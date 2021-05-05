@@ -59,7 +59,7 @@ Filtering to see all the Florida data
 ```{r}
 Florida_Data <- covid_prison_case %>% 
   filter(name == "Florida") %>% 
-  select(as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
+  select(abbreviation, as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
 ```
 
 
@@ -127,7 +127,6 @@ ggplot(Florida_Data,
 ```
 
 
-
 Get the summary table for multiple columns in the dataset
 ```{r}
 Summarized_Florida_Data <- Florida_Data %>% 
@@ -151,6 +150,17 @@ Summarized_Florida_Data <- Florida_Data %>%
             
 ```
 
-
-
+Create a dataset for Wisconsin
 ```{r}
+Wisconsin_Data <- covid_prison_case %>% 
+  filter(name == "Wisconsin") %>% 
+  select(abbreviation, as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
+```
+
+Merge Wisconsin data with Florida data
+```{r}
+Merged_Covid_Data <- full_join(Wisconsin_Data, Florida_Data, by = c("abbreviation")) 
+
+```
+
+
