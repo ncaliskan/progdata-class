@@ -90,7 +90,25 @@ ggplot(Florida_Data, aes(as.Date(as_of_date), total_staff_cases)) +
 
 
 ```{r}
-
+Summarized_Florida_Data <- Florida_Data %>% 
+  summarise(TSC_MN = mean(total_staff_cases, na.rm = TRUE),
+            TSC_SD = sd(total_staff_cases, na.rm = TRUE),
+            TSD_MN = mean(total_staff_deaths, na.rm = TRUE),
+            TSD_SD = sd(total_staff_deaths, na.rm = TRUE),
+            TPC_MD = mean(total_prisoner_cases, na.rm = TRUE),
+            TPC_SD = sd(total_prisoner_cases, na.rm = TRUE),
+            TPD_MN = mean(total_prisoner_deaths, na.rm = TRUE),
+            TPD_SD = sd(total_prisoner_deaths, na.rm = TRUE),
+            TSC_min = min(total_staff_cases, na.rm = TRUE),
+            TSD_min = min(total_staff_deaths, na.rm = TRUE),
+            TPC_min = min(total_prisoner_cases, na.rm = TRUE),
+            TPD_min = min(total_prisoner_deaths, na.rm = TRUE),
+            TSC_max = max(total_staff_cases, na.rm = TRUE),
+            TSD_max = max(total_staff_deaths, na.rm = TRUE),
+            TPC_max = max(total_prisoner_cases, na.rm = TRUE),
+            TPD_max = max(total_prisoner_deaths, na.rm = TRUE))
+            
+            
 ```
 
 
