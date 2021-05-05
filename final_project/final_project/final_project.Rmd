@@ -100,7 +100,8 @@ Compare prisoner cases to staff cases in Florida
 ggplot(Florida_Data,
        aes(x = total_prisoner_cases, 
            y= total_staff_cases)) +
-  geom_point(alpha = 0.5,
+  geom_point(alpha = 0.4,
+             size = 6,
              color = "purple",
              fill = "purple") +
   scale_x_continuous(name = "Total Prisoner Cases") +
@@ -108,6 +109,24 @@ ggplot(Florida_Data,
   ggtitle("Prisoner Cases over Staff Cases in Florida") +
   theme_classic() 
 ```
+
+
+Compare prisoner deaths to staff deaths in Florida
+```{r}
+ggplot(Florida_Data,
+       aes(x = total_prisoner_deaths, 
+           y= total_staff_deaths)) +
+  geom_point(alpha = 0.3,
+             size = 3,
+             color = "blue",
+             fill = "blue") +
+  scale_x_continuous(name = "Total Prisoner Deaths") +
+  scale_y_continuous(name = "Total Staff Deaths") +
+  ggtitle("Prisoner Deaths over Staff Deaths in Florida") +
+  theme_minimal() 
+```
+
+
 
 Get the summary table for multiple columns in the dataset
 ```{r}
@@ -132,12 +151,6 @@ Summarized_Florida_Data <- Florida_Data %>%
             
 ```
 
-
-
-```{r}
-
-
-```
 
 
 ```{r}
