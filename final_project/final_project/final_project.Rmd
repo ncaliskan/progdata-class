@@ -3,8 +3,8 @@ title: "Caliskan_finalproj"
 author: "Neslihan Caliskan"
 date: "5/1/2021"
 output: 
-  github_document: default
   html_document: default
+  github_document: default
 ---
 
 ### The Data
@@ -176,9 +176,15 @@ ggplot(Texas_Data,
 ```
 
 
-Comparing staff dates with staff deaths by state
 ```{r}
 Staff_Stuff <- covid_prison_case %>%
+  select(abbreviation, total_staff_cases, total_staff_deaths)
+```
+
+
+Comparing staff dates with staff deaths by state
+```{r}
+Staff_Stuff %>%
     plotly::plot_ly(x = ~total_staff_cases,
             y = ~total_staff_deaths,
             color = ~abbreviation,
