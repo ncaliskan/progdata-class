@@ -3,9 +3,12 @@ title: "Caliskan_finalproj"
 author: "Neslihan Caliskan"
 date: "5/1/2021"
 output: 
-  html_document: default
   github_document: default
+  html_document: default
 ---
+
+### The Data
+The data is consisting of the prisoners and stuffs were impacted by Covid-19 (deaths, case rates) in all the states in the US. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -190,6 +193,6 @@ Staff_Stuff <- covid_prison_case %>%
 ```
 
 
-
+### Case rates and deaths were way more higher for Texas and California compared to other states.
 
 
