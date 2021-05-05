@@ -152,15 +152,46 @@ Summarized_Florida_Data <- Florida_Data %>%
 
 Create a dataset for Wisconsin
 ```{r}
-Wisconsin_Data <- covid_prison_case %>% 
-  filter(name == "Wisconsin") %>% 
+Texas_Data <- covid_prison_case %>% 
+  filter(name == "Texas") %>% 
   select(abbreviation, as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
 ```
 
-Merge Wisconsin data with Florida data
+
 ```{r}
-Merged_Covid_Data <- full_join(Wisconsin_Data, Florida_Data, by = c("abbreviation")) 
+ggplot(Texas_Data,
+       aes(x = total_prisoner_deaths, 
+           y= total_staff_deaths)) +
+  geom_point(alpha = 0.3,
+             size = 3,
+             color = "orange",
+             fill = "orange") +
+  scale_x_continuous(name = "Total Prisoner Deaths") +
+  scale_y_continuous(name = "Total Staff Deaths") +
+  ggtitle("Prisoner Deaths over Staff Deaths in Florida") +
+  theme_minimal() 
+```
+
+
+Comparing staff dates with staff deaths by state
+```{r}
+Staff_Stuff <- covid_prison_case %>%
+    plotly::plot_ly(x = ~total_staff_cases,
+            y = ~total_staff_deaths,
+            color = ~abbreviation,
+            
+            # mode specifies the geometric object e.g. "markers" for points, "line" for lines
+            mode = 'markers',
+            
+            # type controls the "type" of graph e.g. 'bar', 'scatter'
+            type = 'scatter'
+            )
+
+
 
 ```
+
+
+
 
 
