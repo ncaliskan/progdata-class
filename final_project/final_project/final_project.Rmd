@@ -17,7 +17,7 @@ library(tidyverse)
 library(readr)
 library(ggplot2)
 library(here)
-library(ggdist)
+library(plotly)
 ```
 
 
@@ -157,7 +157,7 @@ Texas_Data <- covid_prison_case %>%
   select(abbreviation, as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
 ```
 
-
+The plot comparing prisoner deaths to staff deaths in Texas
 ```{r}
 ggplot(Texas_Data,
        aes(x = total_prisoner_deaths, 
@@ -186,8 +186,6 @@ Staff_Stuff <- covid_prison_case %>%
             # type controls the "type" of graph e.g. 'bar', 'scatter'
             type = 'scatter'
             )
-
-
 
 ```
 
