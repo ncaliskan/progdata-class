@@ -1,0 +1,204 @@
+---
+title: "Caliskan_finalproj"
+author: "Neslihan Caliskan"
+date: "5/1/2021"
+output: 
+  html_document: default
+  github_document: default
+---
+
+### The Data
+The data is consisting of the prisoners and stuffs were impacted by Covid-19 (deaths, case rates) in all the states in the US. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Loading in datasets
+```{r load in packages}
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(here)
+library(plotly)
+```
+
+
+```{r}
+if ( !dir.exists( here::here("final_project", "data") ) ) {
+  dir.create( here::here("final_project", "data", "output", ".R"), recursive = TRUE )
+}
+
+```
+
+Loading in csv files
+```{r load in csv files}
+covid_prison_case <- read_csv(here("data", "covid_prison_cases.csv"))
+                       
+covid_prison_rate <- read_csv(here("data", "covid_prison_rates.csv"))
+                       
+covid_population <-  read_csv(here("data", "prison_populations.csv"))
+                   
+staff_population <-  read_csv(here("data", "staff_populations.csv"))
+
+```
+
+
+Renamed the column so the names for it wouldn't overlap across different datasets when I join them together.
+```{r}
+(staff_population %>% 
+   rename(staff_april_pop = april_pop))
+
+```
+
+Joining all three datasets together
+```{r}
+# Merged_Covid_Data <- full_join(staff_population, covid_population, by = c("name", "abbreviation")) %>% 
+#   full_join(covid_prison_case, by = c("name", "abbreviation"))
+
+```
+
+Filtering to see all the Florida data
+```{r}
+Florida_Data <- covid_prison_case %>% 
+  filter(name == "Florida") %>% 
+  select(abbreviation, as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
+```
+
+
+```{r}
+Staff_Data_FL <- staff_population %>% 
+   filter(name == "Florida") %>% 
+    select(as_of_date, april_pop)
+
+```
+
+
+```{r}
+Prisoner_Data_FL <- covid_population %>% 
+   filter(name == "Florida") 
+```
+
+
+```{r}
+ggplot(Florida_Data,
+       aes(x = as.Date(as_of_date), 
+           y= total_staff_cases),
+           color = "purple",
+           fill = "purple") +
+  geom_point(alpha = 0.1) +
+  scale_x_date("Date", date_breaks = "12 months", date_labels = "%m-%Y") +
+  scale_y_discrete(name = "Total Staff Cases") +
+  geom_smooth(method = "loess") +
+  geom_vline(xintercept = as.numeric(as.Date("2020-01-01")), linetype = "dashed") +
+  scale_y_continuous(name = "Total Staff Cases") +
+  ggtitle("Total Staff Cases Per Year") +
+  theme_bw() 
+
+```
+
+
+Compare prisoner cases to staff cases in Florida
+```{r}
+ggplot(Florida_Data,
+       aes(x = total_prisoner_cases, 
+           y= total_staff_cases)) +
+  geom_point(alpha = 0.4,
+             size = 6,
+             color = "purple",
+             fill = "purple") +
+  scale_x_continuous(name = "Total Prisoner Cases") +
+  scale_y_continuous(name = "Total Staff Cases") +
+  ggtitle("Prisoner Cases over Staff Cases in Florida") +
+  theme_classic() 
+```
+
+
+Compare prisoner deaths to staff deaths in Florida
+```{r}
+ggplot(Florida_Data,
+       aes(x = total_prisoner_deaths, 
+           y= total_staff_deaths)) +
+  geom_point(alpha = 0.3,
+             size = 3,
+             color = "blue",
+             fill = "blue") +
+  scale_x_continuous(name = "Total Prisoner Deaths") +
+  scale_y_continuous(name = "Total Staff Deaths") +
+  ggtitle("Prisoner Deaths over Staff Deaths in Florida") +
+  theme_minimal() 
+```
+
+
+Get the summary table for multiple columns in the dataset
+```{r}
+Summarized_Florida_Data <- Florida_Data %>% 
+  summarise(TSC_MN = mean(total_staff_cases, na.rm = TRUE),
+            TSC_SD = sd(total_staff_cases, na.rm = TRUE),
+            TSD_MN = mean(total_staff_deaths, na.rm = TRUE),
+            TSD_SD = sd(total_staff_deaths, na.rm = TRUE),
+            TPC_MD = mean(total_prisoner_cases, na.rm = TRUE),
+            TPC_SD = sd(total_prisoner_cases, na.rm = TRUE),
+            TPD_MN = mean(total_prisoner_deaths, na.rm = TRUE),
+            TPD_SD = sd(total_prisoner_deaths, na.rm = TRUE),
+            TSC_min = min(total_staff_cases, na.rm = TRUE),
+            TSD_min = min(total_staff_deaths, na.rm = TRUE),
+            TPC_min = min(total_prisoner_cases, na.rm = TRUE),
+            TPD_min = min(total_prisoner_deaths, na.rm = TRUE),
+            TSC_max = max(total_staff_cases, na.rm = TRUE),
+            TSD_max = max(total_staff_deaths, na.rm = TRUE),
+            TPC_max = max(total_prisoner_cases, na.rm = TRUE),
+            TPD_max = max(total_prisoner_deaths, na.rm = TRUE))
+            
+            
+```
+
+Create a dataset for Wisconsin
+```{r}
+Texas_Data <- covid_prison_case %>% 
+  filter(name == "Texas") %>% 
+  select(abbreviation, as_of_date, total_staff_cases, total_staff_deaths, total_prisoner_cases, total_prisoner_deaths)
+```
+
+The plot comparing prisoner deaths to staff deaths in Texas
+```{r}
+ggplot(Texas_Data,
+       aes(x = total_prisoner_deaths, 
+           y= total_staff_deaths)) +
+  geom_point(alpha = 0.3,
+             size = 3,
+             color = "orange",
+             fill = "orange") +
+  scale_x_continuous(name = "Total Prisoner Deaths") +
+  scale_y_continuous(name = "Total Staff Deaths") +
+  ggtitle("Prisoner Deaths over Staff Deaths in Florida") +
+  theme_minimal() 
+```
+
+
+```{r}
+Staff_Stuff <- covid_prison_case %>%
+  select(abbreviation, total_staff_cases, total_staff_deaths)
+```
+
+
+Comparing staff dates with staff deaths by state
+```{r}
+Staff_Stuff %>%
+    plotly::plot_ly(x = ~total_staff_cases,
+            y = ~total_staff_deaths,
+            color = ~abbreviation,
+            
+            # mode specifies the geometric object e.g. "markers" for points, "line" for lines
+            mode = 'markers',
+            
+            # type controls the "type" of graph e.g. 'bar', 'scatter'
+            type = 'scatter'
+            )
+
+```
+
+
+### Case rates and deaths were way more higher for Texas and California compared to other states.
+
+
