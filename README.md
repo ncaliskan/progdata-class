@@ -2,7 +2,6 @@
 
 # Homework Template
 
-<<<<<<< HEAD
 ***Hello everyone!!*** :hear_no_evil:
 This is Neslihan Caliskan, welcome to my **class repository**! A repository is a online place where we all can keep the files and codes we worked on in a single space and easily make edits on them. 
 =======
