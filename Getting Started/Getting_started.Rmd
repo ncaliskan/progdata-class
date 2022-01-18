@@ -1,0 +1,51 @@
+---
+title: "ProgData introduction"
+author: "Neslihan Caliskan"
+date: "1/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Section 7.2 on the study guide
+```{r}
+#use the concatenate c() function to enter a set of values
+times <- c(4,5,6,7,10,6.5)
+
+mean(times) 
+sd(times)
+
+```
+
+Section 7.2.6 on the study guide
+```{r}
+mtcars
+#For this section you are getting familiarized with some of the basic functions in R.
+
+# head () gives us the first 6 rows of the dataset
+head(mtcars)
+
+# tail() gives us the last 6 rows of the dataset
+tail(mtcars)
+
+str(mtcars)
+
+mtcars$cyl
+
+#Calculating the miles per galon (mpg)
+
+mpg <- mtcars[["mpg"]] 
+
+#or
+
+mpg <- mtcars$mpg
+
+#calculating mean of  mpg 
+mean(mpg)
+
+
+```
+
+
